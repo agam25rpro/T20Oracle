@@ -1,9 +1,7 @@
 /* 
   T20 Oracle - Frontend Logic
 */
-
-const API_BASE = "http://127.0.0.1:8000";
-
+const API_BASE = "https://t20-oracle-api.onrender.com";
 // DOM Elements
 const form = document.getElementById("prediction-form");
 const team1Select = document.getElementById("team1");
