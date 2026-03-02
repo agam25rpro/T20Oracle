@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T20 Oracle</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +16,19 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <span class="logo-icon">🏏</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="logo-svg" style="margin-right: 8px;">
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#2563EB" />
+                            <stop offset="1" stop-color="#10B981" />
+                        </linearGradient>
+                    </defs>
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" />
+                </svg>
                 <span class="logo-text">T20 Oracle <span class="badge">AI</span></span>
             </div>
             <div class="nav-links">
@@ -58,7 +71,10 @@
                     <!-- Layer 1: Inputs -->
                     <div class="flow-step input-step">
                         <div class="flow-box">
-                            <span class="icon">📝</span> User Request
+                            <span class="icon"><svg width="20" height="20" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg></span> User Request
                         </div>
                         <div class="flow-desc">Teams, Venue & Toss</div>
                     </div>
@@ -69,14 +85,25 @@
                     <div class="flow-parallel">
                         <div class="flow-branch">
                             <div class="flow-box agent-box">
-                                <span class="icon">📊</span> Stats Agent
+                                <span class="icon"><svg width="20" height="20" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        viewBox="0 0 24 24">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                    </svg></span> Stats Agent
                             </div>
                             <div class="flow-desc">Queries SQLite DB. Analyzes Head-to-Head & Toss Win %</div>
                         </div>
 
                         <div class="flow-branch">
                             <div class="flow-box agent-box">
-                                <span class="icon">🏟️</span> Venue Expert
+                                <span class="icon"><svg width="20" height="20" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        viewBox="0 0 24 24">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg></span> Venue Expert
                             </div>
                             <div class="flow-desc">Evaluates pitch behavior (Bat 1st vs Chase advantage)</div>
                         </div>
@@ -87,7 +114,10 @@
                     <!-- Layer 3: Dynamic Data -->
                     <div class="flow-step">
                         <div class="flow-box agent-box feature-highlight">
-                            <span class="icon">⚡</span> Player Form Agent
+                            <span class="icon"><svg width="20" height="20" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                </svg></span> Player Form Agent
                         </div>
                         <div class="flow-desc">
                             <strong>Live Integration:</strong> Combines local DB stats (Top 5 players in last 5 matches)
@@ -100,7 +130,12 @@
                     <!-- Layer 4: Synthesis -->
                     <div class="flow-step">
                         <div class="flow-box boss-box">
-                            <span class="icon">🧠</span> Chief Strategist
+                            <span class="icon"><svg width="20" height="20" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                    <path d="M2 12h20"></path>
+                                </svg></span> Chief Strategist
                         </div>
                         <div class="flow-desc">Synthesizes the three independent analyst reports into a final tactical
                             conclusion with a calculated confidence score.</div>
@@ -111,26 +146,43 @@
             <!-- Detailed Cards -->
             <div class="feature-grid">
                 <div class="feature-card">
-                    <div class="feature-icon stats-icon">📊</div>
+                    <div class="feature-icon stats-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg></div>
                     <h3>Stats Analyst</h3>
                     <p>Fires direct SQL queries against our database of 4,900+ matches. It strips away the noise to find
                         out historically who dominates head-to-head and who leverages the toss best.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon venue-icon">🏟️</div>
+                    <div class="feature-icon venue-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg></div>
                     <h3>Venue Expert</h3>
                     <p>Not all pitches are equal. This agent calculates the average competitive score and mathematically
                         determines if the venue heavily favors chasing or putting runs on the board first.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon form-icon">⚡</div>
+                    <div class="feature-icon form-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg></div>
                     <h3>Player Form Agent</h3>
                     <p>The bridge between history and today. It pulls the top 5 performing batters and bowlers from the
                         DB, then makes a live network call to <strong>cricketdata.org (CricAPI)</strong> to fetch very
                         recent match scorecards, identifying players currently peaking.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon boss-icon">🧠</div>
+                    <div class="feature-icon boss-icon"><svg width="24" height="24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                            <path d="M2 12h20"></path>
+                        </svg></div>
                     <h3>Chief Strategist (Boss)</h3>
                     <p>The final decision maker. Orchestrated via <strong>LangGraph</strong>, it waits for all three
                         analysts to submit their reports. It weighs historical dominance against live player form to
@@ -235,7 +287,16 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-logo">🏏 T20 Oracle</div>
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="margin-right: 6px; vertical-align: middle;">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                    <polyline points="2 17 12 22 22 17" />
+                    <polyline points="2 12 12 17 22 12" />
+                </svg>
+                T20 Oracle
+            </div>
             <p>Powered by local SQLite, Cricsheet data, and modern LLMs.</p>
         </div>
     </footer>
