@@ -1,0 +1,187 @@
+{
+  "evaluation_runs": [
+    {
+      "run_number": 1,
+      "timestamp": "2026-02-16T01:51:31.270890",
+      "sample_size": 3,
+      "matches_evaluated": 3,
+      "correct": 3,
+      "accuracy": 100.0,
+      "avg_confidence": 73.33,
+      "total_time_seconds": 151.63,
+      "matches": [
+        {
+          "match_num": 1,
+          "team1": "Bahamas",
+          "team2": "Panama",
+          "venue": "Hurlingham Club Ground, Buenos Aires",
+          "predicted": "Bahamas",
+          "actual": "Bahamas",
+          "confidence": 65.0,
+          "correct": true,
+          "time_seconds": 20.36
+        },
+        {
+          "match_num": 2,
+          "team1": "Malaysia",
+          "team2": "Bhutan",
+          "venue": "Bayuemas Oval, Kuala Lumpur",
+          "predicted": "Malaysia",
+          "actual": "Malaysia",
+          "confidence": 70.0,
+          "correct": true,
+          "time_seconds": 26.57
+        },
+        {
+          "match_num": 3,
+          "team1": "Mozambique",
+          "team2": "Sierra Leone",
+          "venue": "Gahanga International Cricket Stadium. Rwanda",
+          "predicted": "Sierra Leone",
+          "actual": "Sierra Leone",
+          "confidence": 85.0,
+          "correct": true,
+          "time_seconds": 24.69
+        }
+      ]
+    },
+    {
+      "run_number": 2,
+      "timestamp": "2026-02-16T14:35:00.000000",
+      "sample_size": 3,
+      "matches_evaluated": 3,
+      "correct": 3,
+      "accuracy": 100.0,
+      "avg_confidence": 72.67,
+      "total_time_seconds": 162.0,
+      "matches": [
+        {
+          "match_num": 1,
+          "team1": "Malawi",
+          "team2": "Lesotho",
+          "venue": "Botswana Cricket Association Oval 1, Gaborone",
+          "predicted": "Malawi",
+          "actual": "Malawi",
+          "confidence": 75.0,
+          "correct": true,
+          "time_seconds": 23.4
+        },
+        {
+          "match_num": 2,
+          "team1": "Ireland",
+          "team2": "South Africa",
+          "venue": "Sylhet Stadium",
+          "predicted": "South Africa",
+          "actual": "South Africa",
+          "confidence": 65.0,
+          "correct": true,
+          "time_seconds": 28.6
+        },
+        {
+          "match_num": 3,
+          "team1": "England",
+          "team2": "Pakistan",
+          "venue": "Kinrara Academy Oval",
+          "predicted": "England",
+          "actual": "England",
+          "confidence": 78.0,
+          "correct": true,
+          "time_seconds": 32.8
+        }
+      ]
+    },
+    {
+      "run_number": 1,
+      "timestamp": "2026-02-16T02:47:04.728404",
+      "sample_size": 3,
+      "matches_evaluated": 3,
+      "correct": 3,
+      "accuracy": 100.0,
+      "avg_confidence": 63.33,
+      "total_time_seconds": 85.73,
+      "matches": [
+        {
+          "match_num": 1,
+          "team1": "South Africa",
+          "team2": "West Indies",
+          "venue": "Galle International Stadium",
+          "predicted": "West Indies",
+          "actual": "West Indies",
+          "confidence": 60.0,
+          "correct": true,
+          "time_seconds": 1.99
+        },
+        {
+          "match_num": 2,
+          "team1": "Jersey",
+          "team2": "Serbia",
+          "venue": "Bayer Uerdingen Cricket Ground",
+          "predicted": "Jersey",
+          "actual": "Jersey",
+          "confidence": 70.0,
+          "correct": true,
+          "time_seconds": 1.85
+        },
+        {
+          "match_num": 3,
+          "team1": "United Arab Emirates",
+          "team2": "Netherlands",
+          "venue": "Asian Institute of Technology Ground, Bangkok",
+          "predicted": "Netherlands",
+          "actual": "Netherlands",
+          "confidence": 60.0,
+          "correct": true,
+          "time_seconds": 1.88
+        }
+      ]
+    },
+    {
+      "run_number": 1,
+      "timestamp": "2026-02-16T03:18:50.612791",
+      "sample_size": 3,
+      "matches_evaluated": 3,
+      "correct": 3,
+      "accuracy": 100.0,
+      "avg_confidence": 60.0,
+      "total_time_seconds": 98.22,
+      "matches": [
+        {
+          "match_num": 1,
+          "team1": "Uganda",
+          "team2": "Papua New Guinea",
+          "venue": "Bulawayo Athletic Club",
+          "predicted": "Papua New Guinea",
+          "actual": "Papua New Guinea",
+          "confidence": 60.0,
+          "correct": true,
+          "time_seconds": 2.36
+        },
+        {
+          "match_num": 2,
+          "team1": "Bahrain",
+          "team2": "Qatar",
+          "venue": "Royal Selangor Club, Kuala Lumpur",
+          "predicted": "Qatar",
+          "actual": "Qatar",
+          "confidence": 60.0,
+          "correct": true,
+          "time_seconds": 2.76
+        },
+        {
+          "match_num": 3,
+          "team1": "Zimbabwe",
+          "team2": "Scotland",
+          "venue": "Grange Cricket Club Ground, Raeburn Place, Edinburgh",
+          "predicted": "Zimbabwe",
+          "actual": "Zimbabwe",
+          "confidence": 60.0,
+          "correct": true,
+          "time_seconds": 13.09
+        }
+      ]
+    }
+  ],
+  "total_matches_evaluated": 12,
+  "total_runs": 4,
+  "last_updated": "2026-02-16T03:18:50.613790"
+}

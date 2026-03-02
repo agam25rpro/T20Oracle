@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T20 Oracle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🏏</span>
+                <span class="logo-text">T20 Oracle <span class="badge">AI</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#demo" class="btn btn-outline">Try It Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="badge-pill">Powered by LangGraph & Gemini/Groq LLMs</div>
+                <h1 class="hero-title">Predict T20 Matches with <span class="gradient-text">Agentic AI</span></h1>
+                <p class="hero-subtitle">
+                    A multi-agent AI framework that analyzes historical data, venue conditions, and live player form to
+                    deliver highly accurate predictions and tactical reasoning.
+                </p>
+                <div class="hero-actions">
+                    <a href="#demo" class="btn btn-primary">Try It Now</a>
+                    <a href="#how-it-works" class="btn btn-secondary">Learn How It Works</a>
+                </div>
+            </div>
+            <!-- Decorative background blur -->
+            <div class="hero-bg-blur"></div>
+        </section>
+
+        <!-- Architecture Diagram & Deep Dive -->
+        <section id="how-it-works" class="architecture">
+            <div class="section-header">
+                <h2>How The Intelligence Works</h2>
+                <p>A multi-agent LangGraph architecture orchestrates four specialized LLMs to synthesize historical data
+                    with live API feeds.</p>
+            </div>
+
+            <!-- Flow Diagram -->
+            <div class="flow-diagram-container">
+                <div class="flow-grid">
+                    <!-- Layer 1: Inputs -->
+                    <div class="flow-step input-step">
+                        <div class="flow-box">
+                            <span class="icon">📝</span> User Request
+                        </div>
+                        <div class="flow-desc">Teams, Venue & Toss</div>
+                    </div>
+
+                    <div class="flow-arrow arrow-down">↓</div>
+
+                    <!-- Layer 2: Parallel Analysts -->
+                    <div class="flow-parallel">
+                        <div class="flow-branch">
+                            <div class="flow-box agent-box">
+                                <span class="icon">📊</span> Stats Agent
+                            </div>
+                            <div class="flow-desc">Queries SQLite DB. Analyzes Head-to-Head & Toss Win %</div>
+                        </div>
+
+                        <div class="flow-branch">
+                            <div class="flow-box agent-box">
+                                <span class="icon">🏟️</span> Venue Expert
+                            </div>
+                            <div class="flow-desc">Evaluates pitch behavior (Bat 1st vs Chase advantage)</div>
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow arrow-merge">↘ ↙</div>
+
+                    <!-- Layer 3: Dynamic Data -->
+                    <div class="flow-step">
+                        <div class="flow-box agent-box feature-highlight">
+                            <span class="icon">⚡</span> Player Form Agent
+                        </div>
+                        <div class="flow-desc">
+                            <strong>Live Integration:</strong> Combines local DB stats (Top 5 players in last 5 matches)
+                            with up-to-the-minute live scores from the <em>CricAPI</em> endpoint.
+                        </div>
+                    </div>
+
+                    <div class="flow-arrow arrow-down">↓</div>
+
+                    <!-- Layer 4: Synthesis -->
+                    <div class="flow-step">
+                        <div class="flow-box boss-box">
+                            <span class="icon">🧠</span> Chief Strategist
+                        </div>
+                        <div class="flow-desc">Synthesizes the three independent analyst reports into a final tactical
+                            conclusion with a calculated confidence score.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Cards -->
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon stats-icon">📊</div>
+                    <h3>Stats Analyst</h3>
+                    <p>Fires direct SQL queries against our database of 4,900+ matches. It strips away the noise to find
+                        out historically who dominates head-to-head and who leverages the toss best.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon venue-icon">🏟️</div>
+                    <h3>Venue Expert</h3>
+                    <p>Not all pitches are equal. This agent calculates the average competitive score and mathematically
+                        determines if the venue heavily favors chasing or putting runs on the board first.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon form-icon">⚡</div>
+                    <h3>Player Form Agent</h3>
+                    <p>The bridge between history and today. It pulls the top 5 performing batters and bowlers from the
+                        DB, then makes a live network call to <strong>cricketdata.org (CricAPI)</strong> to fetch very
+                        recent match scorecards, identifying players currently peaking.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon boss-icon">🧠</div>
+                    <h3>Chief Strategist (Boss)</h3>
+                    <p>The final decision maker. Orchestrated via <strong>LangGraph</strong>, it waits for all three
+                        analysts to submit their reports. It weighs historical dominance against live player form to
+                        return a structured JSON prediction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo / Product Section -->
+        <section id="demo" class="demo-section">
+            <div class="demo-container">
+                <div class="demo-info">
+                    <h2>Live Prediction Engine</h2>
+                    <p>Select the teams, venue, and toss scenario to run the multi-agent pipeline live.</p>
+                    <ul class="demo-bullets">
+                        <li><span>✔</span> Real-time data synthesis</li>
+                        <li><span>✔</span> Complete reasoning output</li>
+                        <li><span>✔</span> Evaluates 100K+ player records</li>
+                    </ul>
+                </div>
+
+                <div class="demo-app glass-panel">
+                    <form id="prediction-form" class="prediction-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="team1">Team 1</label>
+                                <select id="team1" required>
+                                    <option value="" disabled selected>Loading teams...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="team2">Team 2</label>
+                                <select id="team2" required>
+                                    <option value="" disabled selected>Loading teams...</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="venue">Venue</label>
+                            <select id="venue" required>
+                                <option value="" disabled selected>Loading venues...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="toss_winner">Toss Winner</label>
+                                <select id="toss_winner" required disabled>
+                                    <option value="" disabled selected>Select teams first</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="batting_first">Batting First</label>
+                                <select id="batting_first" required disabled>
+                                    <option value="" disabled selected>Select teams first</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn btn-primary w-full">
+                            <span class="btn-text">Run Prediction Model</span>
+                            <div class="spinner hidden"></div>
+                        </button>
+                    </form>
+
+                    <!-- Result Panel -->
+                    <div id="result-panel" class="result-panel hidden">
+                        <div class="result-header">
+                            <div>
+                                <p class="result-label">Predicted Winner</p>
+                                <h3 id="res-winner" class="res-value">Team Name</h3>
+                            </div>
+                            <div class="confidence-box">
+                                <div class="confidence-circle">
+                                    <svg viewBox="0 0 36 36" class="circular-chart blue">
+                                        <path class="circle-bg" d="M18 2.0845
+                                          a 15.9155 15.9155 0 0 1 0 31.831
+                                          a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <path class="circle" id="conf-circle" stroke-dasharray="0, 100" d="M18 2.0845
+                                          a 15.9155 15.9155 0 0 1 0 31.831
+                                          a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <text x="18" y="20.35" class="percentage" id="res-confidence">0%</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-body">
+                            <p class="result-label">AI Reasoning Strategy</p>
+                            <p id="res-reasoning" class="res-text"></p>
+                        </div>
+                    </div>
+
+                    <!-- Error Panel -->
+                    <div id="error-panel" class="error-panel hidden">
+                        <p id="error-text"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">🏏 T20 Oracle</div>
+            <p>Powered by local SQLite, Cricsheet data, and modern LLMs.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
