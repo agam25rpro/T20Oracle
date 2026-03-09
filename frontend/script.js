@@ -1,8 +1,5 @@
-/* 
-  T20 Oracle - Frontend Logic
-*/
 const API_BASE = "https://t20-oracle-api.onrender.com";
-// DOM Elements
+
 const form = document.getElementById("prediction-form");
 const team1Select = document.getElementById("team1");
 const team2Select = document.getElementById("team2");
@@ -21,36 +18,74 @@ const resReasoning = document.getElementById("res-reasoning");
 const confCircle = document.getElementById("conf-circle");
 const errorText = document.getElementById("error-text");
 
-// Initialize page
+const MAX_RETRIES = 5;
+const RETRY_DELAY = 5000;
+
+async function fetchWithRetry(url, options = {}, retries = MAX_RETRIES) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const res = await fetch(url, { ...options, signal: AbortSignal.timeout(30000) });
+            if (res.ok) return res;
+            if (res.status === 503 || res.status === 502) {
+                showColdStartBanner(i + 1, retries);
+                await sleep(RETRY_DELAY);
+                continue;
+            }
+            throw new Error(`Server returned ${res.status}`);
+        } catch (err) {
+            if (i < retries - 1 && (err.name === "TimeoutError" || err.name === "TypeError" || err.message.includes("Failed to fetch"))) {
+                showColdStartBanner(i + 1, retries);
+                await sleep(RETRY_DELAY);
+                continue;
+            }
+            throw err;
+        }
+    }
+    throw new Error("Server is unavailable. Please try again in a minute.");
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function showColdStartBanner(attempt, max) {
+    let banner = document.getElementById("cold-start-banner");
+    if (!banner) {
+        banner = document.createElement("div");
+        banner.id = "cold-start-banner";
+        banner.style.cssText = "position:fixed;top:0;left:0;right:0;background:linear-gradient(90deg,#2563EB,#10B981);color:#fff;text-align:center;padding:12px 16px;font-size:14px;font-weight:500;z-index:9999;font-family:Inter,sans-serif;";
+        document.body.prepend(banner);
+    }
+    banner.textContent = `Waking up the server... (attempt ${attempt}/${max}). Free-tier servers sleep after inactivity.`;
+}
+
+function hideColdStartBanner() {
+    const banner = document.getElementById("cold-start-banner");
+    if (banner) banner.remove();
+}
+
 async function init() {
     try {
         await Promise.all([loadTeams(), loadVenues()]);
+        hideColdStartBanner();
         setupEventListeners();
     } catch (err) {
-        showError("Failed to connect to the AI server. Is it running?");
+        hideColdStartBanner();
+        showError("Failed to connect to the AI server. Please refresh the page to try again.");
     }
 }
 
-// Fetch and load Teams
 async function loadTeams() {
-    const res = await fetch(`${API_BASE}/teams`);
-    if (!res.ok) throw new Error("Failed to load teams");
+    const res = await fetchWithRetry(`${API_BASE}/teams`);
     const teams = await res.json();
-
     populateSelect(team1Select, teams, "Select Home Team");
     populateSelect(team2Select, teams, "Select Away Team");
 }
 
-// Fetch and load Venues
 async function loadVenues() {
-    const res = await fetch(`${API_BASE}/venues`);
-    if (!res.ok) throw new Error("Failed to load venues");
+    const res = await fetchWithRetry(`${API_BASE}/venues`);
     const venues = await res.json();
-
     populateSelect(venueSelect, venues, "Select Match Venue");
 }
 
-// Helper: populate select dropdowns
 function populateSelect(element, dataArray, defaultText) {
     element.innerHTML = `<option value="" disabled selected>${defaultText}</option>`;
     dataArray.forEach(item => {
@@ -61,31 +96,25 @@ function populateSelect(element, dataArray, defaultText) {
     });
 }
 
-// Handle Team Selection (Updates Toss + Batting options based on selected teams)
 function setupEventListeners() {
     [team1Select, team2Select].forEach(select => {
         select.addEventListener("change", updateTossOptions);
     });
-
     form.addEventListener("submit", handlePrediction);
 }
 
 function updateTossOptions() {
     const t1 = team1Select.value;
     const t2 = team2Select.value;
-
     if (t1 && t2) {
         if (t1 === t2) {
             alert("Team 1 and Team 2 must be different.");
             team2Select.value = "";
             return;
         }
-
         const teams = [t1, t2];
-
         populateSelect(tossWinnerSelect, teams, "Who won the toss?");
         populateSelect(battingFirstSelect, teams, "Who is batting first?");
-
         tossWinnerSelect.disabled = false;
         battingFirstSelect.disabled = false;
     } else {
@@ -94,11 +123,8 @@ function updateTossOptions() {
     }
 }
 
-// Handle Prediction Request
 async function handlePrediction(e) {
     e.preventDefault();
-
-    // UI State -> Loading
     hidePanels();
     setLoading(true);
 
@@ -111,20 +137,16 @@ async function handlePrediction(e) {
     };
 
     try {
-        const res = await fetch(`${API_BASE}/predict`, {
+        const res = await fetchWithRetry(`${API_BASE}/predict`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload)
         });
-
-        if (!res.ok) {
-            throw new Error(`Server returned ${res.status}`);
-        }
-
         const data = await res.json();
+        hideColdStartBanner();
         showResult(data);
-
     } catch (err) {
+        hideColdStartBanner();
         showError(err.message || "An error occurred while running the prediction.");
     } finally {
         setLoading(false);
@@ -157,22 +179,13 @@ function showError(msg) {
 function showResult(data) {
     resWinner.textContent = data.predicted_winner;
     resReasoning.textContent = data.reasoning;
-
-    // Format confidence
     const confValue = Math.round(data.confidence);
     resConfidence.textContent = `${confValue}%`;
-
-    // Update SVG stroke-dasharray for circular chart
-    // full circle is 100, format: "X, 100"
     setTimeout(() => {
         confCircle.setAttribute("stroke-dasharray", `${confValue}, 100`);
     }, 100);
-
     resultPanel.classList.remove("hidden");
-
-    // Smooth scroll to result
     resultPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-// Kickoff
 init();
