@@ -50,22 +50,39 @@ def fetch_toss_stats(team1: str, team2: str) -> dict:
     stats = {}
     for team in [team1, team2]:
         cur.execute("""
-            SELECT COUNT(*) as total, SUM(CASE WHEN winner = ? THEN 1 ELSE 0 END) as wins
+            SELECT
+                COUNT(*) as matches_with_toss,
+                SUM(CASE WHEN toss_winner = ? THEN 1 ELSE 0 END) as toss_wins,
+                SUM(CASE WHEN toss_winner = ? AND winner = ? THEN 1 ELSE 0 END) as wins_when_won_toss,
+                SUM(CASE WHEN toss_winner != ? AND winner = ? THEN 1 ELSE 0 END) as wins_when_lost_toss
             FROM matches
-            WHERE (team1 = ? OR team2 = ?) AND winner IS NOT NULL AND toss_decision IS NOT NULL
-        """, (team, team, team))
-        row = cur.fetchone()
-        cur.execute("""
-            SELECT SUM(CASE WHEN toss_winner = ? THEN 1 ELSE 0 END) as toss_wins
-            FROM matches
-            WHERE (team1 = ? OR team2 = ?) AND toss_winner IS NOT NULL
-        """, (team, team, team))
-        toss_row = cur.fetchone()
+            WHERE (team1 = ? OR team2 = ?)
+              AND winner IS NOT NULL
+              AND toss_winner IS NOT NULL
+        """, (team, team, team, team, team, team, team))
+        row = cur.fetchone() or (0, 0, 0, 0)
+
+        matches_with_toss = int(row[0] or 0)
+        toss_wins = int(row[1] or 0)
+        wins_when_won_toss = int(row[2] or 0)
+        wins_when_lost_toss = int(row[3] or 0)
+
+        toss_losses = matches_with_toss - toss_wins
+
+        win_rate_when_won_toss = (wins_when_won_toss / toss_wins) if toss_wins else None
+        win_rate_when_lost_toss = (wins_when_lost_toss / toss_losses) if toss_losses else None
+        toss_win_rate = (toss_wins / matches_with_toss) if matches_with_toss else None
+
         stats[team] = {
-            "total_matches": row[0] if row else 0,
-            "total_wins": row[1] if row else 0,
-            "toss_wins": toss_row[0] if toss_row else 0,
+            "matches_with_toss": matches_with_toss,
+            "toss_wins": toss_wins,
+            "wins_when_won_toss": wins_when_won_toss,
+            "wins_when_lost_toss": wins_when_lost_toss,
+            "win_rate_when_won_toss": win_rate_when_won_toss,
+            "win_rate_when_lost_toss": win_rate_when_lost_toss,
+            "toss_win_rate": toss_win_rate,
         }
+
     conn.close()
     return stats
 
@@ -92,7 +109,7 @@ Task:
 Write a concise analytical paragraph (4-6 sentences) comparing:
 1. Head-to-head historical dominance
 2. Recent form (last 5 matches each)
-3. Toss win tendencies and impact
+3. Toss advantage (win rate when winning toss vs losing toss)
 Mention key numbers explicitly.
 Return ONLY plain text paragraph."""
 
