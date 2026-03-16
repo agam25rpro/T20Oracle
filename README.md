@@ -345,6 +345,16 @@ Server starts at `http://localhost:8000`.
 
 ---
 
+## Frontend
+
+The frontend is a lightweight, responsive **Vanilla HTML/CSS/JS** Single-Page Application (SPA) located in the `frontend/` directory. It features a premium dark-mode UI that allows users to select teams and venues seamlessly. It communicates with the backend via REST API to fetch predictions and elegantly displays the step-by-step LLM reasoning process. Because it is purely static, it can be simply opened in a browser or easily hosted on a static hosting service.
+
+## Backend
+
+The backend is a robust **FastAPI** application (`app/main.py`) serving as the orchestration engine. It utilizes **LangGraph** to manage the multi-agent workflow (Stats, Venue, Player Form, and Boss Agents) and interfaces with multiple LLM providers (Google Gemini and Groq) via an automated fallback system. The backend asynchronously queries both the local SQLite database and live cricket APIs, feeds this structured evidence into the LLM prompts, and serves the resulting consolidated predictions via fastREST endpoints.
+
+---
+
 ## Deployment
 
 ### Backend (Render)
