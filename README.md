@@ -1,5 +1,13 @@
 # T20 Oracle
 
+![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-05998b.svg?style=flat&logo=fastapi&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-Build-orange)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-AI-blue)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Repo Size](https://img.shields.io/github/repo-size/agam25rpro/T20Oracle)
+![Last Commit](https://img.shields.io/github/last-commit/agam25rpro/T20Oracle)
+
 A **multi-agent AI system** that predicts T20 cricket match outcomes using historical data, venue analysis, real-time player form, and LLM-powered reasoning — powered by Google Gemini, Groq (Llama), and LangGraph.
 
 ---
