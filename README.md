@@ -4,6 +4,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-05998b.svg?style=flat&logo=fastapi&logoColor=white)
 ![LangGraph](https://img.shields.io/badge/LangGraph-Build-orange)
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-AI-blue)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue?logo=docker&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Repo Size](https://img.shields.io/github/repo-size/agam25rpro/T20Oracle)
 ![Last Commit](https://img.shields.io/github/last-commit/agam25rpro/T20Oracle)
@@ -337,6 +338,18 @@ python run.py
 # Simply open frontend/index.html in your browser
 ```
 
+### Running with Docker
+
+You can also run the backend using Docker:
+
+```bash
+# 1. Build the image
+docker build -t t20oracle-backend .
+
+# 2. Run the container
+docker run -p 8000:8000 --env-file .env t20oracle-backend
+```
+
 Server starts at `http://localhost:8000`.
 
 ---
@@ -359,7 +372,7 @@ The frontend is a lightweight, responsive **Vanilla HTML/CSS/JS** Single-Page Ap
 
 ## Backend
 
-The backend is a robust **FastAPI** application (`app/main.py`) serving as the orchestration engine. It utilizes **LangGraph** to manage the multi-agent workflow (Stats, Venue, Player Form, and Boss Agents) and interfaces with multiple LLM providers (Google Gemini and Groq) via an automated fallback system. The backend asynchronously queries both the local SQLite database and live cricket APIs, feeds this structured evidence into the LLM prompts, and serves the resulting consolidated predictions via fastREST endpoints.
+The backend is a robust **FastAPI** application (`app/main.py`) serving as the orchestration engine. It utilizes **LangGraph** to manage the multi-agent workflow (Stats, Venue, Player Form, and Boss Agents) and interfaces with multiple LLM providers (Google Gemini and Groq) via an automated fallback system. The backend is fully **containerized** via the included **Dockerfile**, allowing for consistent and easy deployment across any environment.
 
 ---
 
